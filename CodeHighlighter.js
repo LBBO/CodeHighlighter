@@ -82,7 +82,7 @@ $.fn.highlightCode = function(codeType) {
 			for(var i = 0; i < selectorMatches.length; i++) {
 				var selector = selectorMatches[i];
 				selector = selector.replace(tagRegex, '$1<span class="cssTag">$2</span>');
-				selector = selector.replace(pseudoclassRegex, ':<span class="cssPseudoclass">$1</span>');
+				selector = selector.replace(pseudoclassRegex, ':<span class="cssPseudoClass">$1</span>');
 				selector = selector.replace(idRegex, '#<span class="cssId">$1</span>');
 				selector = selector.replace(classRegex, '.<span class="cssClass">$1</span>');
 				result = result.replace(selectorMatches[i], selector);

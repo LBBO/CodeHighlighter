@@ -13,7 +13,7 @@
 		<meta name="robots" content="noindex, nofollow, noarchive" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" type="text/css" href="./CodeHighlighter.css"/>
-		<script src="./jquery-2.1.1.min.js"></script>
+		<script src="jquery/jquery-2.1.1.min.js"></script>
 		<script src="./CodeHighlighter.js"></script>
 		<script src="./example.js"></script>
 	</head>
@@ -92,7 +92,7 @@ html, body {
 	color: #8080C0;
 	font-weight: bold;
 }
-.cssDOPPELPUNKT {
+.cssPseudoClass {
 	color: #FF8000;
 	font-weight: bold;
 }
@@ -180,7 +180,7 @@ $.fn.markCode = function(codeType) {
 			var selectorRegex = /(?:}|^)([\s\S]*?){/g;
 			var idRegex = /\#([a-zA-Z0-9\.\-\_]*)/g;
 			var classRegex = /\.([a-zA-Z0-9\.\-\_]*)/g;
-			var DOPPELPUNKTRegex = /\:([a-zA-Z0-9\.\-\_]*)/g;
+			var pseudoclassRegex = /\:([a-zA-Z0-9\.\-\_]*)/g;
 			var tagRegex = /((?:}|\s)+)([a-zA-Z0-9\-\_]+)/g;
 			
 			var commentRegex = /(\/\*[\s\S]*?\*\/)/g;
@@ -196,7 +196,7 @@ $.fn.markCode = function(codeType) {
 				var selector = selectorMatches[i];
 				//console.log(selector);
 				selector = selector.replace(tagRegex, '$1&lt;span class="cssTag">$2&lt;/span>');
-				selector = selector.replace(DOPPELPUNKTRegex, ':&lt;span class="cssDOPPELPUNKT">$1&lt;/span>');
+				selector = selector.replace(pseudoclassRegex, ':&lt;span class="cssPseudoClass">$1&lt;/span>');
 				selector = selector.replace(idRegex, '#&lt;span class="cssId">$1&lt;/span>');
 				selector = selector.replace(classRegex, '.&lt;span class="cssClass">$1&lt;/span>');
 				//console.log(selector);
