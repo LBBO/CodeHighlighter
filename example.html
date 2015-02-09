@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<title>Code Highlighter</title>
+		<meta charset="UTF-8"/>
+		<meta name="language" content="de"/>
+		<meta name="description" content=""/>
+		<meta name="keywords" content=""/>
+		<meta name="copyright" content="Michael David Kuckuk"/>
+		<meta name="author" content="Michael David Kuckuk"/>
+		<meta name="publisher" content="Michael David Kuckuk"/>
+		<meta name="generator" content="Notepad++">
+		<meta name="robots" content="noindex, nofollow, noarchive" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" type="text/css" href="./style.css"/>
+		<script src="./jquery-2.1.1.min.js"></script>
+		<script src="./CodeHighlighter.js"></script>
+		<script src="./example.js"></script>
+	</head>
+	
+	<body>
+		<code class="html">
+<!-- HTML code example -->
+<!DOCTYPE html>
+&lt;html lang="de">
+	&lt;head>
+		&lt;title>Titel&lt;/title>
+		&lt;meta charset="UTF-8"/>
+		&lt;meta name="language" content="de"/>
+		&lt;meta name="description" content=""/>
+		&lt;meta name="keywords" content=""/>
+		&lt;meta name="copyright" content="Michael David Kuckuk"/>
+		&lt;meta name="author" content="Michael David Kuckuk"/>
+		&lt;meta name="publisher" content="Michael David Kuckuk"/>
+		&lt;meta name="generator" content="Notepad++">
+		&lt;meta name="robots" content="noindex, nofollow, noarchive" />
+		&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		&lt;link rel="icon" type="image/x-icon" href="./favicon.ico"/>
+		&lt;link rel="stylesheet" type="text/css" href="./style.css"/>
+		<!-- <link rel="stylesheet/less" type="text/css" href="styles.less" /> -->
+		&lt;link rel="stylesheet" type="text/css" href="./js/jquery-ui/jquery-ui.css"/>
+		&lt;script src="./js/jquery-2.1.1.js">&lt;/script>
+		&lt;script src="./js/jquery-ui/jquery-ui.js">&lt;/script>
+		&lt;script src="./js/jquery-migrate-min.js">&lt;/script>
+		&lt;script src="./js/markCode.js">&lt;/script>
+		&lt;script src="./js/main.js">&lt;/script>
+	&lt;/head>
+	
+	&lt;body>
+		<code class="html">
+		
+		</code>
+		<code class="css">
+		
+		</code>
+		<code class="js">
+		
+		</code>
+		<code class="php">
+			
+		</code>
+	&lt;/body>
+&lt;/html>
+		</code>
+		<code class="css">
+/* CSS code example */
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: monospace;
+}
+.comment * {
+	color: inherit !important;
+	font-weight: inherit !important;
+}
+.cssTag, .htmlTag {
+	color: #0000FF;
+}
+.comment {
+	color: #008000;
+}
+.htmlAttr, .cssClass, .jsInt {
+	color: #FF0000;
+}
+.cssImportant {
+	color: #FF0000;
+	font-weight: bold;
+}
+.cssAttr {
+	color: #8080C0;
+	font-weight: bold;
+}
+.cssDOPPELPUNKT {
+	color: #FF8000;
+	font-weight: bold;
+}
+.cssId {
+	color: #0080FF;
+	font-weight: bold;
+}
+.htmlValue {
+	color: #8000FF;
+	font-weight: bold;
+}
+.jsKeyword {
+	color: #000080;
+}
+.jsString {
+	color: #808080 !important;
+	font-weight: normal !important;
+}
+		</code>
+		<code class="js">
+// JavaScript code example
+$.fn.markCode = function(codeType) {
+	var self = this;
+	var functions = {
+		html: function() {
+			var code = self.html();
+			var HtmlRegex = /(\&lt;[a-zA-Z1-6]+(\s*[a-zA-Z1-6\-_\.]+(?:=\".*\")?)*\s*\/?\s*\&gt;)/g;
+			var HtmlRegex2 = /\&lt;[a-zA-Z1-6]+(\s*[a-zA-Z1-6\-_\.]+(?:=\".*\")?)*\s*\/?\s*\&gt;/g;
+			var HtmlEndRegex = /(\&lt;\/[a-zA-Z1-6]*\&gt;)/g;
+			var attributeRegex = /([a-zA-Z0-9\-\_]*)=(\"[a-zA-Z0-9\-\_\s\{\}\(\)\[\]\.\/\,\=\+\#]*\")/g;
+			var commentRegex1 = /(&lt;!--[\s\S]*?--&gt;)/g;
+			var commentRegex2 = /(\/\/.*)/g;
+			var styleRegex = /&lt;style&gt;([\s\S]*?)&lt;\/style&gt;/g
+			var scriptRegex = /&lt;script&gt;([\s\S]*?)&lt;\/script&gt;/g
+			//var test = regex.exec(code);
+			//console.log(test);
+			
+			var result = code;
+			
+			result = result.replace(/&lt;/g, '&lt;');
+			result = result.replace(/>/g, '&gt;');
+			console.log(result);
+			
+			/*var attrsOld = HtmlRegex.exec(result)[2];
+			var attrsNew = attrsOld.replace(attributeRegex, '&lt;span style="color: #FF0000;">$1&lt;/span>=&lt;span style="color: #8000FF;">$2&lt;/span>');
+			result = result.replace(attrsOld, attrsNew);*/
+			
+			result = result.replace(HtmlRegex, '&lt;span class="htmlTag">$1&lt;/span>');
+			/*var i = 0;
+			while(HtmlRegex2.exec(result) && i &lt; 100) {
+				var attrsOld = HtmlRegex2.exec(result)[1];
+				if(attrsOld) {
+					var attrsNew = attrsOld.replace(attributeRegex, '&lt;span class="htmlAttr">$1&lt;/span>=&lt;span class="htmlValue">$2&lt;/span>');
+					result = result.replace(attrsOld, attrsNew);
+				}
+				i++;
+			}*/
+			
+			var htmlAttrMatches = result.match(HtmlRegex2);
+			for(var i = 0; i &lt; htmlAttrMatches.length; i++) {
+				var attrs = htmlAttrMatches[i];
+				
+				attrs = attrs.replace(attributeRegex, '&lt;span class="htmlAttr">$1&lt;/span>=&lt;span class="htmlValue">$2&lt;/span>');
+				
+				result = result.replace(htmlAttrMatches[i], attrs);
+			}
+			
+			result = result.replace(HtmlEndRegex, '&lt;span class="htmlTag">$1&lt;/span>');
+			result = result.replace(commentRegex1, '&lt;span class="comment">$1&lt;/span>');
+			result = result.replace(commentRegex2, '&lt;span class="comment">$1&lt;/span>');
+			
+			result = result.replace(/\n/g, '&lt;br />');
+			result = result.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+			
+			console.log(result);
+			return result;
+		},
+		
+		css: function() {
+			var result = self.html();
+			
+			var attrsRegex = /{((?:\s*[a-zA-Z0-9\-\_]*\s*:\s*[a-zA-Z0-9\-\_\%\s\!\(\)\.\#\,\"\'\/\*]*;\s*)+)}/g;
+			var attrNameRegex = /(\{|\;|\>)(\s*[a-zA-Z0-9\-\_]+\s*)/g;
+			
+			var selectorRegex = /(?:}|^)([\s\S]*?){/g;
+			var idRegex = /\#([a-zA-Z0-9\.\-\_]*)/g;
+			var classRegex = /\.([a-zA-Z0-9\.\-\_]*)/g;
+			var DOPPELPUNKTRegex = /\:([a-zA-Z0-9\.\-\_]*)/g;
+			var tagRegex = /((?:}|\s)+)([a-zA-Z0-9\-\_]+)/g;
+			
+			var commentRegex = /(\/\*[\s\S]*?\*\/)/g;
+			
+			result = result.replace(/&lt;/g, '&lt;');
+			result = result.replace(/>/g, '&gt;');
+			
+			result = result.replace(attrNameRegex, '$1&lt;span class="cssAttr">$2&lt;/span>');
+			
+			//result = result.replace(tagRegex, '$1&lt;span style="color: #0000FF;">$2&lt;/span>');
+			var selectorMatches = result.match(selectorRegex);
+			for(var i = 0; i &lt; selectorMatches.length; i++) {
+				var selector = selectorMatches[i];
+				//console.log(selector);
+				selector = selector.replace(tagRegex, '$1&lt;span class="cssTag">$2&lt;/span>');
+				selector = selector.replace(DOPPELPUNKTRegex, ':&lt;span class="cssDOPPELPUNKT">$1&lt;/span>');
+				selector = selector.replace(idRegex, '#&lt;span class="cssId">$1&lt;/span>');
+				selector = selector.replace(classRegex, '.&lt;span class="cssClass">$1&lt;/span>');
+				//console.log(selector);
+				result = result.replace(selectorMatches[i], selector);
+			}
+			
+			result = result.replace(/(\!important)/g, '&lt;span class="cssImportant">$1&lt;/span>');
+			result = result.replace(commentRegex, '&lt;span class="comment">$1&lt;/span>');
+			
+			result = result.replace(/\n/g, '&lt;br />');
+			result = result.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+			
+			//console.log(result);
+			return result;
+		},
+		
+		js: function() {
+			var result = self.html();
+			console.log(result);
+			
+			var intRegex = /(\W)(\d+)(\W)/g;
+			var commentRegex1 = /(\/\*[\s\S]*?\*\/)/g;
+			var commentRegex2 = /(\/\/.*)/g;
+			var quoteRegex1 = /([^\\])(\".*?[^\\]\")/g;
+			var quoteRegex2 = /([^\\])(\'.*?[^\\]\')/g;
+			var regexRegex = /(\/[^\n\>\&lt;\/]+\/g?i?m?)/g;
+			
+			var jsKeywords = [
+				/(\W)(class)([^\w\=\"])/g,
+				/(\W)(function)(\W)/g,
+				/(\W)(var)(\W)/g,
+				/(\W)(switch)(\W)/g,
+				/(\W)(case)(\W)/g,
+				/(\W)(break)(\W)/g,
+				/(\W)(default)(\W)/g,
+				/(\W)(for)(\W)/g,
+				/(\W)(if)(\W)/g,
+				/(\W)(else)(\W)/g,
+				/(\W)(do)(\W)/g,
+				/(\W)(while)(\W)/g,
+				/(\W)(typeof)(\W)/g,
+				/(\W)(return)(\W)/g,
+				/(\W)(this)(\W)/g,
+				/(\W)(true)(\W)/g,
+				/(\W)(abstract)(\W)/g,
+				/(\W)(arguments)(\W)/g,
+				/(\W)(boolean)(\W)/g,
+				/(\W)(byte)(\W)/g,
+				/(\W)(catch)(\W)/g,
+				/(\W)(char)(\W)/g,
+				/(\W)(const)(\W)/g,
+				/(\W)(continue)(\W)/g,
+				/(\W)(debugger)(\W)/g,
+				/(\W)(delete)(\W)/g,
+				/(\W)(double)(\W)/g,
+				/(\W)(enum)(\W)/g,
+				/(\W)(eval)(\W)/g,
+				/(\W)(export)(\W)/g,
+				/(\W)(extends)(\W)/g,
+				/(\W)(final)(\W)/g,
+				/(\W)(finally)(\W)/g,
+				/(\W)(float)(\W)/g,
+				/(\W)(goto)(\W)/g,
+				/(\W)(implements)(\W)/g,
+				/(\W)(import)(\W)/g,
+				/(\W)(in)(\W)/g,
+				/(\W)(instanceof)(\W)/g,
+				/(\W)(int)(\W)/g,
+				/(\W)(interface)(\W)/g,
+				/(\W)(let)(\W)/g,
+				/(\W)(long)(\W)/g,
+				/(\W)(native)(\W)/g,
+				/(\W)(new)(\W)/g,
+				/(\W)(null)(\W)/g,
+				/(\W)(package)(\W)/g,
+				/(\W)(private)(\W)/g,
+				/(\W)(protected)(\W)/g,
+				/(\W)(public)(\W)/g,
+				/(\W)(short)(\W)/g,
+				/(\W)(static)(\W)/g,
+				/(\W)(super)(\W)/g,
+				/(\W)(synchronized)(\W)/g,
+				/(\W)(throw)(\W)/g,
+				/(\W)(throws)(\W)/g,
+				/(\W)(transient)(\W)/g,
+				/(\W)(try)(\W)/g,
+				/(\W)(void)(\W)/g,
+				/(\W)(volatile)(\W)/g,
+				/(\W)(with)(\W)/g,
+				/(\W)(yield)(\W)/g,
+				/(\W)(false)(\W)/g
+			];
+			
+			console.log(result);
+			result = result.replace(/&lt;/g, '&lt;');
+			result = result.replace(/>/g, '&gt;');
+			
+			console.log(result);
+			result = result.replace(quoteRegex1, '$1&lt;span class="jsString">$2&lt;/span>');
+			console.log(result);
+			result = result.replace(quoteRegex2, '$1&lt;span class="jsString">$2&lt;/span>');
+			console.log(result);
+			
+			for(var i = 0; i &lt; jsKeywords.length && i &lt;= 100; i++) {
+				result = result.replace(jsKeywords[i], '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			}
+			console.log(result);
+			
+			/*result = result.replace(functionRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(varRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(switchRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(caseRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(breakRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(defaultRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(forRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(ifRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(elseRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(doRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(returnRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(thisRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(falseRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(trueRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(whileRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');
+			result = result.replace(typeofRegex, '$1&lt;span class="jsKeyword">$2&lt;/span>$3');*/
+			
+			result = result.replace(intRegex, '$1&lt;span class="jsInt">$2&lt;/span>$3');
+			result = result.replace(commentRegex1, '&lt;span class="comment">$1&lt;/span>');
+			result = result.replace(commentRegex2, '&lt;span class="comment">$1&lt;/span>');
+			result = result.replace(regexRegex, '&lt;span class="jsRegex">$1&lt;/span>');
+			
+			result = result.replace(/\n/g, '&lt;br />');
+			result = result.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+			
+			//console.log(result);
+			return result;
+		},
+		
+		php: function() {
+			var result = self.html();
+			console.log(result);
+			
+			var intRegex = /(\W)(\d+)(\W)/g;
+			var commentRegex1 = /(\/\*[\s\S]*?\*\/)/g;
+			var commentRegex2 = /(\/\/.*)/g;
+			var stringRegex1 = /([^\\])(\".*?[^\\]\")/g;
+			var stringRegex2 = /([^\\])(\'.*?[^\\]\')/g;
+			var phpStartRegex = /(&lt;\?php)/g;
+			var phpEndRegex = /(\?&gt;)/g;
+			var phpVarRegex = /(\$\w+)/g
+			
+			var phpKeywords = [
+				/(\W)(class)([^\w\=\"])/g // [...]
+			];
+			
+			result = result.replace(/&lt;/g, '&lt;');
+			result = result.replace(/>/g, '&gt;');
+			
+			console.log(result);
+			result = result.replace(stringRegex1, '$1&lt;span class="phpString">$2&lt;/span>');
+			console.log(result);
+			result = result.replace(stringRegex2, '$1&lt;span class="phpString">$2&lt;/span>');
+			console.log(result);
+			
+			for(var i = 0; i &lt; phpKeywords.length && i &lt;= 1000; i++) {
+				result = result.replace(phpKeywords[i], '$1&lt;span class="phpOperator">$2&lt;/span>$3');
+			}
+			/*
+			var phpStartRegex1 = /(&lt;\?)/g;
+			var phpStartRegex2 = /(&lt;\?php)/g;
+			var phpEndRegex = /(\?>)/g;  phpVarRegex
+			*/
+			result = result.replace(intRegex, '$1&lt;span class="phpInt">$2&lt;/span>$3');
+			result = result.replace(phpStartRegex, '&lt;span class="phpStart">$1&lt;/span>');
+			result = result.replace(phpEndRegex, '&lt;span class="phpEnd">$1&lt;/span>');
+			result = result.replace(phpVarRegex, '&lt;span class="phpVar">$1&lt;/span>');
+			result = result.replace(commentRegex1, '&lt;span class="comment">$1&lt;/span>');
+			result = result.replace(commentRegex2, '&lt;span class="comment">$1&lt;/span>');
+			
+			result = result.replace(/\n/g, '&lt;br />');
+			result = result.replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+			
+			//console.log(result);
+			return result;
+		}
+	};
+	switch(codeType.toLowerCase()) {
+		case 'html':
+			var result = functions.html();
+			self.html(result);
+			break;
+		case 'css':
+			var result = functions.css();
+			self.html(result);
+			break;
+		case 'js':
+			var result = functions.js();
+			self.html(result);
+			break;
+		case 'php':
+			var result = functions.php();
+			self.html(result);
+			break;
+	};
+};
+		</code>
+		<code class="php">
+// PHP code example from XENUX, found at https://github.com/sveneberth/xenux/blob/master/index.php
+&lt;?php
+
+/**
+ * @package    Xenux
+ *
+ * @link       http://www.xenux.bplaced.net
+ * @version    1.4.7
+ * @author     Sven Eberth <mail@sven-eberth.de.hm>
+ * @copyright  Copyright (c) 2013 - 2015, Sven Eberth.
+ * @license    GNU General Public License version 3, see LICENSE.txt
+ */
+
+include_once('../core/inc/config.php'); // include config
+error_reporting(0);
+$return				= array();
+$return['success']	= true;
+$return['$_REQUEST'] = $_REQUEST;
+$return['$_FILES'] = $_FILES;
+switch($_REQUEST['task']) {
+	case 'upload':
+		$parent_folder	= $_REQUEST['parent_folder'];
+		foreach($_FILES as $key => $file) {
+			$name			= $db->real_escape_string($file['name']);
+			$tmpname		= $file['tmp_name'];
+			$mime_type		= $file['type'];
+			$size			= $file['size'];
+			$lastModified	= filemtime($tmpname);
+				
+			$hndFile = fopen($tmpname, "r");
+			$data = addslashes(fread($hndFile, $size));
+			
+			$result = $db->query("INSERT INTO XENUX_files(type, mime_type, data, filename, size, lastModified, parent_folder_id) VALUES('file', '$mime_type', '$data', '$name', '$size', '".date("Y-m-d H:i:s", $lastModified)."', '$parent_folder');");
+			if(!$result)
+				$return['err_db'] = $db->error;
+		}
+		break;
+	case 'create_folder':
+		if(!empty($_REQUEST['folder_name'])) {
+			$folder_name	= $_REQUEST['folder_name'];
+			$parent_folder	= $_REQUEST['parent_folder'];
+			$result = $db->query("INSERT INTO XENUX_files(type, filename, lastModified, parent_folder_id) VALUES('folder', '$folder_name', NOW(), '$parent_folder');");
+			if(!$result) 
+				$return['err_db'] = $db->error;
+		}
+		break;
+	case 'dirs_list':
+		$result = $db->query("SELECT * FROM XENUX_files WHERE type = 'folder';");
+		if(!$result) 
+			$return['err_db'] = $db->error;
+		while($row = $result->fetch_object()) {
+			$return['data'][] = $row;
+		}
+		break;
+	case 'get_entry':
+		$result = $db->query("SELECT * FROM XENUX_files WHERE id = '{$_REQUEST['id']}' LIMIT 1;");
+		if(!$result) 
+			$return['err_db'] = $db->error;
+		$row = $result->fetch_object();
+			$return['data'] = $row;
+		break;
+	case 'dir_list':
+		$result = $db->query("SELECT id, type, filename, mime_type, size, parent_folder_id, DATE_FORMAT(lastModified, '%d.%m.%Y %H:%i:%s') as lastModified FROM XENUX_files WHERE parent_folder_id = '{$_REQUEST['folder']}' ORDER by filename ASC;");
+		if(!$result)
+			$return['err_db'] = $db->error;
+		
+		if( $result->num_rows == 0)
+			$return['data'] = "no entrys";
+		
+		while($row = $result->fetch_object()) {
+			$return['data'][] = $row;
+		}
+		break;
+	case 'breadcrumb':
+		$folder = $_REQUEST['folder'];
+		$breadcrumb = array();
+		while($folder != 0) {
+			$result = $db->query("SELECT id, filename, parent_folder_id FROM XENUX_files WHERE id = '$folder' LIMIT 1;");
+			if(!$result)
+				$return['err_db'] = $db->error;
+			$row = $result->fetch_object();
+			$folder = $row->parent_folder_id;
+			$breadcrumb[] = $row;
+		}
+		$breadcrumb = array_reverse($breadcrumb);
+		$return['data'] = $breadcrumb;
+		break;
+	case 'remove':
+		$id = $_REQUEST['id'];
+		
+		if($id == 0) {
+			$result = $db->query("TRUNCATE TABLE `XENUX_files`;");
+			if(!$result)
+				$return['err_db'] = $db->error;
+			break;
+		}
+		$result = $db->query("SELECT id, type FROM XENUX_files WHERE id = '$id' LIMIT 1;");
+		if(!$result)
+			$return['err_db'] = $db->error;
+		
+		if($result->num_rows == 0) {
+			$return['errmsg'] = "to be removed file not exists";
+			$return['success'] = false;
+			break;
+		}
+		
+		$row = $result->fetch_object();
+		$return['row'] = $row;
+		
+		if($row->type == 'file') {
+			$result = $db->query("DELETE FROM XENUX_files WHERE id = '$id';");
+			if(!$result)
+				$return['err_db'] = $db->error;
+		} elseif($row->type == 'folder') {
+			$arrDelete = array();
+			$arrFolder = array();
+			$arrDelete[] = $id;
+			$arrFolder[] = $id;
+						
+			while(!empty($arrFolder)) {
+				$arrTemp = $arrFolder;
+				$arrFolder = array();
+				
+				foreach($arrTemp as $val) { // for every file/folder
+					$result = $db->query("SELECT id, type, parent_folder_id FROM XENUX_files WHERE parent_folder_id = '$val';");
+					if(!$result)
+						$return['err_db'] = $db->error;
+						
+					while($row = $result->fetch_object()) { // for every file/folder 
+						if($row->type == 'folder') {
+							$arrFolder[] = $row->id;
+						}
+						$arrDelete[] = $row->id;
+					}
+				}
+			}
+			$return['arrDelete'] = $arrDelete;
+			foreach($arrDelete as $val) { // delete all
+				$result = $db->query("DELETE FROM XENUX_files WHERE id = '$val';");
+				if(!$result)
+					$return['err_db'] = $db->error;
+			}
+		}
+		break;
+	case 'move':
+		$id = $_REQUEST['id'];
+		$to = $_REQUEST['to'];
+		
+		if($id == $to) {
+			$return['errmsg'] = "can't move folder in self";
+			$return['success'] = false;
+			break;
+		}
+		
+		$result = $db->query("UPDATE XENUX_files SET parent_folder_id = '$to' WHERE id = '$id';");
+		if(!$result)
+			$return['err_db'] = $db->error;
+		
+		break;
+	case 'rename':
+		$id = $_REQUEST['id'];
+		$newName = $db->real_escape_string($_REQUEST['newName']);
+		
+		$result = $db->query("UPDATE XENUX_files SET filename = '$newName' WHERE id = '$id';");
+		if(!$result)
+			$return['err_db'] = $db->error;
+		
+		break;
+	case "list_all_dirs":
+		$id = 0;
+		$arrAll			= array();
+		$arrFolder		= array();
+		$arrAll[]		= $id;
+		$arrFolder[]	= $id;
+					
+		while(!empty($arrFolder)) {
+			$arrTemp = $arrFolder;
+			$arrFolder = array();
+			
+			foreach($arrTemp as $val) { // for every file/folder
+				$result = $db->query("SELECT id, type, parent_folder_id, filename FROM XENUX_files WHERE parent_folder_id = '$val' ORDER by filename ASC;");
+				if(!$result)
+					$return['err_db'] = $db->error;
+					
+				while($row = $result->fetch_object()) { // for every file/folder 
+					if($row->type == 'folder') {
+						$arrFolder[] = $row->id;
+						$arrAll[] = $row->id;
+					}
+				}
+			}
+		}
+		foreach($arrAll as $val) {
+			$folder = $val;
+			$breadcrumb = array();
+			while($folder != 0) {
+				$result = $db->query("SELECT id, filename, parent_folder_id FROM XENUX_files WHERE id = '$folder' LIMIT 1;");
+				if(!$result)
+					$return['err_db'] = $db->error;
+				$row = $result->fetch_object();
+				$folder = $row->parent_folder_id;
+				$breadcrumb[] = $row;
+			}
+			$breadcrumb = array_reverse($breadcrumb);
+			$return['breadcrumbs'][$val] = $breadcrumb;
+		}	
+		foreach($return['breadcrumbs'] as $key => $val) {
+			$temp = "root";
+			foreach($val as $vall)	{
+				$temp .= "/".$vall->filename;
+			}
+			$return['data'][$key] = $temp;
+		}
+		break;
+}
+header('Content-type: application/json');  
+echo json_encode($return);
+$db->close(); //close the connection to the db
+?>
+		</code>
+	</body>
+</html>
