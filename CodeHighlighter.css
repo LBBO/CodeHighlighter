@@ -1,0 +1,105 @@
+/*###############################################################################
+ * Copyright (c) 2015 Michael David Kuckuk,  mdk(a)kuckuk.com
+ *###############################################################################*/
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: monospace;
+}
+/*############################################################
+ * General code
+ *############################################################*/
+.comment {
+	color: #008000;
+}
+.comment * {
+	color: inherit !important;
+	font-weight: inherit !important;
+}
+/*############################################################
+ * HTML code
+ *############################################################*/
+.htmlTag {
+	color: #0000FF;
+}
+.htmlAttr{
+	color: #FF0000;
+}
+.htmlValue {
+	color: #8000FF;
+	font-weight: bold;
+}
+/*############################################################
+ * CSS code
+ *############################################################*/
+.cssTag {
+	color: #0000FF;
+}
+.cssClass {
+	color: #FF0000;
+}
+.cssImportant {
+	color: #FF0000;
+	font-weight: bold;
+}
+.cssAttr {
+	color: #8080C0;
+	font-weight: bold;
+}
+.cssDOPPELPUNKT {
+	color: #FF8000;
+	font-weight: bold;
+}
+.cssId {
+	color: #0080FF;
+	font-weight: bold;
+}
+/*############################################################
+ * JavaScript code
+ *############################################################*/
+.jsInt {
+	color: #FF0000;
+}
+.jsKeyword {
+	color: #000080;
+	font-weight: bold;
+}
+.jsString {
+	color: inherit !important;
+}
+.jsString {
+	color: #808080 !important;
+	font-weight: normal !important;
+}
+.jsString * {
+	color: inherit !important;
+	font-weight: normal !important;
+}
+.jsRegex {
+	color: #8000FF;
+}
+/*############################################################
+ * PHP code
+ *############################################################*/
+.phpStart, .phpEnd {
+	color: #FF0000;
+}
+.phpString {
+	color: #808080;
+}
+.phpString * {
+	color: inherit !important;
+	font-weight: normal !important;
+}
+.phpInt {
+	color: #FF8000;
+}
+.phpVar {
+	color: #000080;
+}
+.phpOperator {
+	color: #8000FF;
+	font-weight: bold;
+}
