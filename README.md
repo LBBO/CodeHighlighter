@@ -3,6 +3,8 @@ This library was made to highlight code in websites. So if you have an element i
 
 An example can be seen in the two example files 'example.html' and 'example.js'. The example.js just calls the function on the code elements from the example.html. The PHP code I used as an example is from XENUX, a free and open-source CMS (<a href="https://github.com/sveneberth/xenux" title="https://github.com/sveneberth/xenux" target="_blank">https://github.com/sveneberth/xenux</a>. The specific code is from <a href="https://github.com/sveneberth/xenux/blob/master/index.php" title="https://github.com/sveneberth/xenux/blob/master/index.php" target="_blank">https://github.com/sveneberth/xenux/blob/master/index.php</a>)
 
+Example can be seen in <a href="http://jsfiddle.net/LBBO/1vngx7ey/" title="JSfiddle with example files" target="_blank">this fiddle</a>.
+
 Requires jQuery.
 
 Copyright (C) 2015  Michael David Kuckuk
