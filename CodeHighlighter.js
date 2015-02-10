@@ -1190,3 +1190,10 @@ $.fn.highlightCode = function(codeType) {
 			break;
 	};
 };
+
+$(document).ready(function() {
+	$('[code="html"]').highlightCode('html');
+	$('[code="css"]').highlightCode('css');
+	$('[code="js"]').highlightCode('js');
+	$('[code="php"]').highlightCode('php');
+});
